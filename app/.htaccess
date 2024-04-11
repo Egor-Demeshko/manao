@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /
+
+# Allow access to the media folder
+RewriteRule ^media/ - [L]
+
+# Rewrite all other requests to index.php
+RewriteRule ^ index.php [L]
