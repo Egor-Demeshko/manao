@@ -6,10 +6,33 @@ namespace App\php\controller\routes;
 
 class Login
 {
+    const ROUTE = "login";
 
-    public static function start(): void
+    public static function start_GET(): never
     {
-        var_dump("LOGIN CALL");
+        header("Content-Type: application/json; charset=UTF-8");
+        $response = [];
+        $fields = [
+            'login' => ['text' => 'Логин', 'type' => 'text'],
+            'password' => ['text' => 'Пароль', 'type' => 'password'],
+        ];
+        $buttonText = "Войти";
+
+        ob_start();
+        require_once(ROOT . "/php/views/html/form.php");
+        $response["html"] = ob_get_clean();
+
+        $response["css"] = "/src/dist/loginForm.css";
+        $response["js"] = "/src/dist/loginForm.js";
+
+        echo json_encode($response);
+        die;
+    }
+
+
+    public static function start_POST(): void
+    {
+        var_dump("LOGIN POST");
     }
 
 

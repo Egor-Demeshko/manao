@@ -7,7 +7,13 @@ namespace App\Php\Utils;
 
 class Actions
 {
+    const ENQUEUE_STYLES = "enqueue_styles";
+    const ADD_STYLES = "add_styles";
+
+    const ENQUEUE_SCRIPTS = "enqueue_scripts";
+    const ADD_SCRIPTS = "add_scripts";
     private static array $actions = [];
+
 
     public static function addAction(string $actionId, callable $action): void
     {

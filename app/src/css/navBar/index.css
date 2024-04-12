@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-mono);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.navbar__link {
+    text-decoration: none;
+}
+
+.navbar__logo {
+    display: block;
+    height: 100%;
+}
+
+.--h-100 {
+    height: 100%;
+}
+
+.navbar_navigation {
+    display: flex;
+    gap: 2rem;
+    font-family: system-ui, -apple-system, Ubuntu, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: black;
+}
+
+.navbar_navigation a {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar_navigation a:hover {
+    color: var(--main-accent);
+}

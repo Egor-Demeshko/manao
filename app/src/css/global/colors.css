@@ -1,0 +1,16 @@
+:root {
+    --black: #0a0a0a;
+    --purple: #5922da;
+    --purple-light: #f1e6fa;
+    --dark-purple: #3a05b6;
+    --dark-green: #0a5a0a;
+
+    --opace-gray: #3131312c;
+    --opace-red: rgb(255, 185, 185);
+
+    --main-accent: var(--purple);
+    --main-dark: var(--dark-purple);
+    --background-mono: var(--purple-light);
+
+    --arrow-bottom-color: var(--dark-green);
+}

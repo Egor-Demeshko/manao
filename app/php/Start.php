@@ -6,7 +6,10 @@ namespace App\php;
 
 use App\php\controller\Router;
 use App\php\Utils\Actions;
+use App\php\Utils\Styles;
+use App\php\Utils\Scripts;
 use App\php\views\SimpleHead;
+use App\php\views\Body;
 
 class Start
 {
@@ -14,14 +17,23 @@ class Start
     {
         Router::registerRoutes();
         Actions::addAction("create_simple_head", SimpleHead::class . "::createHead");
+
+        /**STYLES EVENTS */
+        Actions::addAction(Actions::ADD_STYLES, Styles::class . "::addStyles");
+        Actions::addAction(Actions::ENQUEUE_STYLES, Styles::class . "::enqueueStyles");
+
+        /**SCRIPT EVENTS */
+        Actions::addAction(Actions::ADD_SCRIPTS, Scripts::class . "::addScripts");
+        Actions::addAction(Actions::ENQUEUE_SCRIPTS, Scripts::class . "::enqueueScripts");
+
+        Actions::addAction(Body::START_BODY, Body::class . "::startBody");
+        Actions::addAction(Body::END_BODY, Body::class . "::endBody");
     }
 
     static public function processRequest(): void
     {
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        $route = str_replace('/', '', $_SERVER['REQUEST_URI']);
-
+        $route = Router::getRequestRoute();
+        $method = Router::getRequestMethod();
         Router::callRoute(method: $method, route: $route);
     }
 }

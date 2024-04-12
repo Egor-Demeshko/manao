@@ -5,7 +5,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/src/const/constants.php';
 
 use App\php\Start;
-use App\php\Utils\Actions;
+
+// Включить вывод ошибок в браузере
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 try {
     Start::start();
