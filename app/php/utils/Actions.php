@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Php\Utils;
+namespace App\php\utils;
 
 
 class Actions

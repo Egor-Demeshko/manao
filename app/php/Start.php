@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\php;
+namespace App\Php;
 
 use App\php\controller\Router;
-use App\php\Utils\Actions;
-use App\php\Utils\Styles;
-use App\php\Utils\Scripts;
+use App\php\utils\Actions;
+use App\php\utils\Styles;
+use App\php\utils\Scripts;
 use App\php\views\SimpleHead;
 use App\php\views\Body;
 

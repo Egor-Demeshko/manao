@@ -3,8 +3,8 @@
 
         <?php foreach ($fields as $name => $data) : ?>
             <div class="login_form__input">
-                <label for="<?= $name ?>"><?= $data['text'] ?></label>
-                <input type="<?= $data['type'] ?>" name="<?= $name ?>" id="<?= $name ?>" required>
+                <label for="<?= $data["id"] ?? "" ?>"><?= $data['text'] ?></label>
+                <input type="<?= $data['type'] ?>" name="<?= $name ?>" id="<?= $data["id"] ?? "" ?>" required="<?= $data["required"] ?? false ?>">
             </div>
         <?php endforeach; ?>
 

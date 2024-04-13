@@ -26,7 +26,7 @@ class Router
         if ($route === Login::ROUTE && ($method === self::GET || $method === self::POST)) {
             self::$routes["login"][$method] = Login::class . "::start" . "_$method";
         } else if ($route === Register::ROUTE && ($method === self::GET || $method === self::POST)) {
-            self::$routes["register"][self::GET] = Register::class . "::start" . "_$method";
+            self::$routes["register"][$method] = Register::class . "::start" . "_$method";
         }
         self::$routes["logout"][self::GET] = Login::class . "::logout";
         self::$routes[""][self::GET] = Main::class . "::start";

@@ -1,11 +1,13 @@
 export default class FormController {
     #open = false;
     #DomElement = null;
+    #client = null;
     #openClass = "--open";
 
     static wrapperClass = "wrapper_form";
 
-    constructor(domElement) {
+    constructor(domElement, client) {
+        this.#client = client;
         if (domElement instanceof HTMLElement) {
             this.#DomElement = domElement;
 
@@ -40,7 +42,11 @@ export default class FormController {
 
         submitButton.addEventListener("click", (e) => {
             e.preventDefault();
-            this.validateFields();
+            const form = this.#DomElement.querySelector("form");
+            let validityResult = form.reportValidity();
+            if (!validityResult) return;
+
+            this.processSubmit();
         });
     }
 
@@ -61,9 +67,22 @@ export default class FormController {
     }
 
     wrapperClose({ target }) {
-        if (target.closest(`.${FormController.wrapperClass}`)) {
+        if (target.classList.contains(FormController.wrapperClass)) {
             this.close();
             return;
         }
+    }
+
+    async processSubmit() {
+        const form = this.#DomElement.querySelector("form");
+        if (!form) return;
+
+        const formData = new FormData(form);
+        //ждем результат, если результат ок, то все, закрываешь окогко. делаем обновление и
+        //считаем себя залогиненными.(фактически просто редирект на главую, но уже будет sessionid)
+        const result = await this.#client.postRequest(formData);
+        console.log(await result.text());
+        //ELSE если результат ошибка, то сохранить поля в форме.
+        //прописать ошибки.
     }
 }

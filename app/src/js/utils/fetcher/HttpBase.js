@@ -3,5 +3,10 @@ export default class HttpBase {
         return await fetch(route, { method });
     }
 
-    static postRequest() {}
+    static async postRequest(route, method, options = null) {
+        return await fetch(route, {
+            method,
+            ...options,
+        });
+    }
 }

@@ -4,29 +4,28 @@ import createCss from "../utils/creators/createCss";
 import FormController from "../elements/FormController";
 import getClient from "../utils/fetcher/getClient";
 
-export default async function loginStart() {
+export default async function registerStart() {
     //необхожимо получить доступ к кнопке логина
     //создать два событие, pointereneter и click
     //при pointerenter получить разметку логина
     //при click показать всплывающее окно
 
-    const loginElem = document.getElementById("login");
+    const elem = document.getElementById("register");
     let formLoaded = false;
     let loginForm;
 
-    if (!loginElem) {
-        console.error("НЕТ ЭЛЕМЕНТА ЛОГИН");
+    if (!elem) {
+        console.error("НЕТ ЭЛЕМЕНТА РЕГИСТРАЦИИ");
         return;
     }
 
-    loginElem.addEventListener("pointerenter", getLoginMarkUp, { once: true });
-    loginElem.addEventListener("click", openLoginForm);
+    elem.addEventListener("pointerenter", getRegisterMarkUp, { once: true });
+    elem.addEventListener("click", openForm);
 
-    async function getLoginMarkUp() {
+    async function getRegisterMarkUp() {
         try {
-            const client = getClient("login");
+            const client = getClient("register");
             const result = await client.getRequest();
-
             let data = await result.json();
 
             let { html, js, css } = data;
@@ -37,13 +36,13 @@ export default async function loginStart() {
             createScript(js);
             createCss(css);
 
-            loginForm = new FormController(domElement);
+            loginForm = new FormController(domElement, client);
         } catch (e) {
             console.error(e);
         }
     }
 
-    function openLoginForm() {
+    function openForm() {
         if (formLoaded) {
             setTimeout(() => {
                 if (formLoaded) {
