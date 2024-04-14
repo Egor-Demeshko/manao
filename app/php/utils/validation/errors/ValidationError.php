@@ -7,6 +7,7 @@ namespace App\Php\Utils\Validation\Errors;
 
 interface ValidationError
 {
+
     public function getErrorMessage(): string;
 
     public function getFieldSlug(): string;

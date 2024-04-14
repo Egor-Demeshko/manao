@@ -13,7 +13,7 @@ class LoginValidation implements Validation
     public static function validate(string $login): bool
     {
         if (strlen($login) < 3) {
-            throw new LoginValidationError("Количество символов в логине должно быть больше 3", "login");
+            throw new LoginValidationError(errorMessage: "Количество символов в логине должно быть больше 3", slug: "login");
         }
 
         return true;

@@ -81,8 +81,35 @@ export default class FormController {
         //ждем результат, если результат ок, то все, закрываешь окогко. делаем обновление и
         //считаем себя залогиненными.(фактически просто редирект на главую, но уже будет sessionid)
         const result = await this.#client.postRequest(formData);
-        console.log(await result.text());
-        //ELSE если результат ошибка, то сохранить поля в форме.
-        //прописать ошибки.
+
+        try {
+            let errorObj = await result.json();
+
+            if (errorObj.status === "false") {
+                delete errorObj.status;
+                this.showErrors(errorObj);
+            } else if (errorObj.status === "true") {
+                this.close();
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 50);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    showErrors(errorObj) {
+        for (let [fieldId, message] of Object.entries(errorObj)) {
+            let label = this.#DomElement.querySelector(
+                `#${fieldId}`
+            )?.previousElementSibling;
+
+            label.parentElement.classList.add("--error");
+
+            if (label) {
+                label.textContent = message;
+            }
+        }
     }
 }

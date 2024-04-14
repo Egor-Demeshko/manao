@@ -6,14 +6,16 @@ namespace App\Php\Utils\Validation;
 
 use App\php\utils\validation\Validation;
 
-class ValidationEntryPoint implements Validation
+class ValidationEntryPoint
 {
+    const VALIDATION_ROUTE = "\\App\\php\\utils\\validation\\";
 
-    public static function validate(string $value, string $field = ''): bool
+    public static function generateValidationRoutes(string $value, string $field = '', string $addString = ''): bool
     {
-        define("VALIDATION_ROUTE", "\\App\\php\\utils\\validation\\");
-        $filedWithCapital = ucfirst($field);
 
-        return call_user_func(VALIDATION_ROUTE . "$filedWithCapital" . "Validation::validate", $value);
+        $filedWithCapital = ucfirst($field);
+        $callback = self::VALIDATION_ROUTE . "$filedWithCapital" . "Validation::validate";
+
+        return call_user_func($callback, $value, $addString);
     }
 }

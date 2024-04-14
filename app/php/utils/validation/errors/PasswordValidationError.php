@@ -6,9 +6,9 @@ declare(strict_types=1);
 namespace App\Php\Utils\Validation\Errors;
 
 use Error;
-use App\Php\Utils\Validation\Errors\ValidationError;
+use App\php\utils\validation\errors\ValidationError;
 
-class LoginValidationError extends Error implements ValidationError
+class PasswordValidationError extends Error implements ValidationError
 {
 
     public function __construct(private string $errorMessage, private string $slug)

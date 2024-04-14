@@ -1,0 +1,14 @@
+{
+    "admin@admin.by|admin": {
+        "id": 1,
+        "login": "admin",
+        "password": "admin",
+        "email": "admin@admin.by"
+    },
+    "rusepiqyl@mailinator.com|Corporis quia vel of": {
+        "login": "Corporis quia vel of",
+        "password": "166268876f6acdc3d04fbedd67b87781",
+        "email": "rusepiqyl@mailinator.com",
+        "id": "73454288fa5e27f2"
+    }
+}

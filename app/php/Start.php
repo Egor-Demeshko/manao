@@ -10,6 +10,7 @@ use App\php\utils\Styles;
 use App\php\utils\Scripts;
 use App\php\views\SimpleHead;
 use App\php\views\Body;
+use App\db\DBCreator;
 
 class Start
 {
@@ -34,6 +35,7 @@ class Start
     {
         $route = Router::getRequestRoute();
         $method = Router::getRequestMethod();
+        DBCreator::createDB(DBCreator::JSON);
         Router::callRoute(method: $method, route: $route);
     }
 }
