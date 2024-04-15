@@ -15,7 +15,6 @@ export default async function registerStart() {
     let loginForm;
 
     if (!elem) {
-        console.error("НЕТ ЭЛЕМЕНТА РЕГИСТРАЦИИ");
         return;
     }
 

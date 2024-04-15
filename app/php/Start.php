@@ -16,6 +16,7 @@ class Start
 {
     static public function start(): void
     {
+        define("IS_SESSION", isset($_SESSION['login']) ? true : false);
         Router::registerRoutes();
         Actions::addAction("create_simple_head", SimpleHead::class . "::createHead");
 

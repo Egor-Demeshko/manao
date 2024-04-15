@@ -13,14 +13,16 @@ use App\db\DBCreator;
 class Login
 {
     const ROUTE = "login";
+    const LOGOUT = "logout";
 
     public static function start_GET(): never
     {
         header("Content-Type: application/json; charset=UTF-8");
         $response = [];
         $fields = [
-            'login' => ['text' => 'Логин', 'type' => 'text'],
-            'password' => ['text' => 'Пароль', 'type' => 'password'],
+            'login' => ['id' => 'login', 'text' => 'Логин', 'type' => 'text'],
+            'email' => ['id' => 'email', 'text' => 'Email', 'type' => 'text'],
+            'password' => ['id' => 'password', 'text' => 'Пароль', 'type' => 'password'],
         ];
         $buttonText = "Войти";
 
@@ -38,7 +40,6 @@ class Login
 
     public static function start_POST(): void
     {
-        $errors = ["status" => "true"];
         ["login" => $login, "password" => $password, "email" => $email] = $_POST;
         $fields = ["login" => $login, "password" => $password, "email" => $email];
 
@@ -50,6 +51,7 @@ class Login
 
     public static function validateFields(array $fields): void
     {
+        $errors = ["status" => "true"];
         foreach ($fields as $field => $value) {
             try {
                 $fields[$field] = trim($value);
@@ -66,7 +68,7 @@ class Login
         }
     }
 
-    public static function loginUser(array $fields): void
+    public static function loginUser(array $fields): never
     {
         $db = DBCreator::getDatabase();
 
@@ -77,17 +79,30 @@ class Login
             throw new ValidationResponseError($errors);
         };
 
-        $passwordcheckResult = $db->checkPassword($fields["email"], $fields["login"], $fields["password"]);
+        $passwordcheckResult = $db->checkRecordField('password', $fields["password"], $fields["email"], $fields["login"]);
 
         if (!$passwordcheckResult) {
             $errors["status"] = "false";
             $errors["login"] = "Неправильный логин, пароль или email";
+            echo $errors;
+            die;
         }
+
+        $_SESSION['login'] = $fields['login'];
+        echo json_encode(['status' => 'true']);
+        die;
     }
 
 
     public static function logout(): void
     {
-        var_dump("LOGOUT CALL");
+        if (isset($_SESSION["login"])) {
+            unset($_SESSION["login"]);
+            echo json_encode(['status' => 'true']);
+            die;
+        }
+
+        echo json_encode(['status' => 'false']);
+        die;
     }
 }

@@ -63,11 +63,13 @@ class DBjson implements DB
     }
 
 
-    public function checkPassword(string $email = '', string $login = '', string $password = ''): bool
+    public function checkRecordField(string $type = "", string $valueToCkech = '', string $email = '', string $login = ''): bool
     {
         $hashKey = $email . "|" . $login;
-        $password = Hash::hash('md5', $password, SALT);
-        if ($this->db[$hashKey]['password'] !== $password) {
+        if ($type == 'password') {
+            $valueToCkech = Hash::hash('md5', $valueToCkech, SALT);
+        }
+        if ($this->db[$hashKey][$type] !== $valueToCkech) {
             return false;
         }
 

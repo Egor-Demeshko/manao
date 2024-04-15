@@ -15,7 +15,6 @@ export default async function loginStart() {
     let loginForm;
 
     if (!loginElem) {
-        console.error("НЕТ ЭЛЕМЕНТА ЛОГИН");
         return;
     }
 
@@ -28,7 +27,6 @@ export default async function loginStart() {
             const result = await client.getRequest();
 
             let data = await result.json();
-
             let { html, js, css } = data;
 
             const domElement = createHtml(html, "body", [
@@ -37,7 +35,7 @@ export default async function loginStart() {
             createScript(js);
             createCss(css);
 
-            loginForm = new FormController(domElement);
+            loginForm = new FormController(domElement, client);
         } catch (e) {
             console.error(e);
         }

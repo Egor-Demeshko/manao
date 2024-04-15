@@ -1,8 +1,8 @@
 <main class="main_content">
     <div class="heading_wrapper">
-        <h1 class="main_content__title">ПРИВЕТ, ТОВАРИЩ.</h1>
+        <h1 class="main_content__title"><?= $title ?? '' ?></h1>
         <p class="main_content__text">
-            Похоже тебе необходимо зарегистрироваться, или войти.
+            <?= $helloText ?>
         </p>
         <svg class="heading_arrow" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_112_2)">

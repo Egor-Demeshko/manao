@@ -14,6 +14,9 @@ class EmailValidation implements Validation
 
     public static function validate(string $email): bool
     {
+        if (strlen($email) == 0) {
+            throw new EmailValidationError(errorMessage: "Почта должна быть заполнена.", slug: "email");
+        }
         if (!preg_match(self::PATTERN, $email)) {
             throw new EmailValidationError(errorMessage: "Почта должна иметь вид email@example.com", slug: "email");
         }

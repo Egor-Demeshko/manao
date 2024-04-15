@@ -10,6 +10,7 @@
     left: 0;
     right: 0;
     z-index: 10;
+    gap: 2rem;
 }
 
 .navbar__link {
@@ -34,9 +35,16 @@
     color: black;
 }
 
+.navbar_navigation.--left {
+    justify-content: flex-start;
+    flex: 1;
+}
+
 .navbar_navigation a {
     cursor: pointer;
     transition: color 0.3s ease;
+    text-decoration: none;
+    color: var(--black);
 }
 
 .navbar_navigation a:hover {

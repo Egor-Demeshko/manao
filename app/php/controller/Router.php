@@ -7,6 +7,7 @@ namespace App\php\controller;
 use App\php\controller\routes\Login;
 use App\php\controller\routes\Register;
 use App\php\controller\routes\Main;
+use App\php\controller\routes\Secret;
 
 class Router
 {
@@ -27,9 +28,14 @@ class Router
             self::$routes["login"][$method] = Login::class . "::start" . "_$method";
         } else if ($route === Register::ROUTE && ($method === self::GET || $method === self::POST)) {
             self::$routes["register"][$method] = Register::class . "::start" . "_$method";
+        } else if ($route === Login::LOGOUT) {
+            self::$routes["logout"][self::POST] = Login::class . "::logout";
         }
-        self::$routes["logout"][self::GET] = Login::class . "::logout";
-        self::$routes[""][self::GET] = Main::class . "::start";
+        if (IS_SESSION && $route == Secret::ROUTE) {
+            self::$routes[Secret::ROUTE][self::GET] = Secret::class . "::start";
+        } else {
+            self::$routes[""][self::GET] = Main::class . "::start";
+        }
     }
 
     static public function callRoute(string $route, string $method = "GET", array $params = [])

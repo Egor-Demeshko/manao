@@ -9,6 +9,8 @@ class NavBar
 
     public static function createNavBar(): void
     {
+        $sessionActive = isset($_SESSION["login"]) ? true : false;
+
         require_once(ROOT . "/php/views/html/navBar/navBar.php");
     }
 }

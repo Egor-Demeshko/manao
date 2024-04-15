@@ -8,17 +8,18 @@ use App\Php\Utils\Actions;
 use App\Php\Views\Body;
 use App\php\views\NavBar;
 
-class Main
+class Secret
 {
+    const ROUTE = "secret";
     public static function start(): void
     {
-        self::createMainResponse();
+        self::createResponse();
     }
 
-    public static function createMainResponse(): void
+    public static function createResponse(): void
     {
         self::addStylesScripts();
-        Actions::callAction('create_simple_head', ["title" => "Главная страница", "description" => "Это самая крутая главная страница."]);
+        Actions::callAction('create_simple_head', ["title" => "Секретная страница", "description" => "Сюда нельзя просто так попасть. Ведь так?"]);
         self::createMainBlock();
     }
 
@@ -42,8 +43,7 @@ class Main
 
     private static function getMainContent(): void
     {
-        $name = (IS_SESSION ? $_SESSION['login'] : 'Товарищ');
-        $title = "Привет, $name";
+        $title = "Секретная страница";
         $helloText = IS_SESSION ? "УРА, ВЫ АВТОРИЗОВАНЫ НА САЙТЕ И ВАМ ДОСТУПНА СЕКРЕТНАЯ СТРАНИЦА" :
             "Похоже ВАМ необходимо зарегистрироваться, или войти.";
         require_once(ROOT . "/php/views/html/main/main.php");

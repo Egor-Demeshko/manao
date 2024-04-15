@@ -10,5 +10,5 @@ interface DB
     public function save(): bool;
     public function addItem(): bool;
     public function isRecordExists(): bool;
-    public function checkPassword(): bool;
+    public function checkRecordField(): bool;
 }

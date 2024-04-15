@@ -12,8 +12,13 @@ class PasswordValidation implements Validation
 {
     public static function validate(string $passwordOne, string $passwordTwo = ''): bool
     {
-        if ($passwordOne !== $passwordTwo) {
-            throw new PasswordValidationError(errorMessage: "Пароли не равны", slug: "password");
+        if (strlen($passwordOne) == 0) {
+            throw new PasswordValidationError(errorMessage: "Поле пароль должно быть заполнено.", slug: "password");
+        }
+        if (strlen($passwordTwo) > 0) {
+            if ($passwordOne !== $passwordTwo) {
+                throw new PasswordValidationError(errorMessage: "Пароли не равны", slug: "password");
+            }
         }
         return true;
     }

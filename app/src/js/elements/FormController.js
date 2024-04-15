@@ -83,12 +83,11 @@ export default class FormController {
         const result = await this.#client.postRequest(formData);
 
         try {
-            let errorObj = await result.json();
-
-            if (errorObj.status === "false") {
-                delete errorObj.status;
-                this.showErrors(errorObj);
-            } else if (errorObj.status === "true") {
+            let response = await result.json();
+            if (response.status === "false") {
+                delete response.status;
+                this.showErrors(response);
+            } else if (response.status === "true") {
                 this.close();
                 setTimeout(() => {
                     window.location.href = "/";
@@ -108,7 +107,7 @@ export default class FormController {
             label.parentElement.classList.add("--error");
 
             if (label) {
-                label.textContent = message;
+                label.textContent = `(${label.textContent}): ${message}`;
             }
         }
     }
