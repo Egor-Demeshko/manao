@@ -1,1 +1,32 @@
-{"rusepiqyl@mailinator.com|Corporis quia vel of":{"login":"Corporis quia vel of","password":"166268876f6acdc3d04fbedd67b87781","email":"rusepiqyl@mailinator.com","id":"73454288fa5e27f2"},"admin@admin.by|admin":{"login":"admin","password":"bd18e2bdff3ef3258ddefb12b132b007","email":"admin@admin.by","id":"fd35fb9c58d4ddce"},"egor@egor.by|egor":{"login":"egor","password":"2ddc9d19d68d6526e35fc1c3190ba673","email":"egor@egor.by","id":"077e1055577a1453"},"egor1@egor1.by|egor1":{"login":"egor1","password":"9ce7dedd8f887cc545a21dd25a7774bd","email":"egor1@egor1.by","id":"64d06a96cf6ae012"}}
+{
+    "rusepiqyl@mailinator.com|Corporis quia vel of": {
+        "login": "Corporis quia vel of",
+        "password": "166268876f6acdc3d04fbedd67b87781",
+        "email": "rusepiqyl@mailinator.com",
+        "id": "73454288fa5e27f2"
+    },
+    "admin@admin.by|admin": {
+        "login": "admin",
+        "password": "bd18e2bdff3ef3258ddefb12b132b007",
+        "email": "admin@admin.by",
+        "id": "fd35fb9c58d4ddce"
+    },
+    "egor@egor.by|egor": {
+        "login": "egor",
+        "password": "2ddc9d19d68d6526e35fc1c3190ba673",
+        "email": "egor@egor.by",
+        "id": "077e1055577a1453"
+    },
+    "egor1@egor1.by|egor1": {
+        "login": "egor1",
+        "password": "9ce7dedd8f887cc545a21dd25a7774bd",
+        "email": "egor1@egor1.by",
+        "id": "64d06a96cf6ae012"
+    },
+    "paby@mailinator.com|Tenetur odit nostrum": {
+        "login": "Tenetur odit nostrum",
+        "password": "166268876f6acdc3d04fbedd67b87781",
+        "email": "paby@mailinator.com",
+        "id": "f2be8359dd5f15c1"
+    }
+}
